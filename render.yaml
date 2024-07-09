@@ -3,5 +3,5 @@ services:
     name: selenium-server
     env: node
     buildCommand:
-      - npm install selenium-webdriver  # Install Selenium WebDriver for Node.js
+      - npm install selenium
     startCommand: npm start
