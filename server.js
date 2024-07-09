@@ -60,8 +60,9 @@ const { exec } = require('child_process');
             console.log(`Uploading ${file.originalname} to S3 in folder ${folder}`);
             return s3.upload(params).promise();
         };
+const chromeDriverPath = `${__dirname}/chromedriver`;
+
 app.get('/run-script', (req, res) => {
-    const chromeDriverPath = path.join(__dirname, 'chromedriver');
     const command = `CHROME_DRIVER_PATH=${chromeDriverPath} python3 main.py`;
 
     exec(command, (error, stdout, stderr) => {
