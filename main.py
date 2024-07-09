@@ -8,11 +8,12 @@ import threading
 import os
 
 # Assuming chromedriver is located in the project root directory
-chrome_driver_path = os.path.join(os.getcwd(), 'chromedriver')
+chrome_driver_path = os.environ.get('CHROME_DRIVER_PATH', './chromedriver')
 
 # Set up Chrome options
 chrome_options = Options()
 chrome_options.add_argument("--start-maximized")
+chrome_options.add_argument("--headless")  # Add headless argument for server environment
 
 # Function to perform Google search and navigate to target URL
 def google_search_navigate(search_query, target_title, target_url):
