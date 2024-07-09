@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node server.js",
-"postinstall": "unzip chromedriver_linux64.zip && chmod +x chromedriver && npm install selenium-webdriver",
+"postinstall": "npm install selenium-webdriver",
   "deploy": "npm run postinstall && npm start",
   },
   "keywords": [],
