@@ -6,10 +6,10 @@
   "engines": {
     "node": "20.13.1"
   },
-   "scripts": {
+ "scripts": {
     "start": "node server.js",
-    "postinstall": "npm install selenium-webdriver && pip install -r requirements.txt && npm run build-python",
-    "build-python": "python3 -m pip install -r requirements.txt",
+    "postinstall": "npm install selenium-webdriver && npm run build-python",
+    "build-python": "pip install -r requirements.txt",
     "deploy": "npm run postinstall && npm start"
   },
   "keywords": [],
