@@ -3,8 +3,5 @@ services:
     name: selenium-server
     env: node
     buildCommand:
-      - curl -LO https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip
-      - unzip chromedriver_linux64.zip
-      - chmod +x chromedriver
       - npm install selenium-webdriver  # Install Selenium WebDriver for Node.js
     startCommand: npm start
