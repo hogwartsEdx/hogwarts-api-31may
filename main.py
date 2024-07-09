@@ -7,8 +7,8 @@ import time
 import threading
 import os
 
-# Path to your ChromeDriver executable
-chrome_driver_path = "/usr/local/bin/chromedriver"
+# Assuming chromedriver is located in the project root directory
+chrome_driver_path = os.path.join(os.path.dirname(__file__), 'chromedriver')
 
 # Set up Chrome options
 chrome_options = Options()
@@ -108,14 +108,10 @@ def smooth_scroll(driver):
 
 # Search queries and target titles
 search_tasks = [
-     ("Sanjay Patidar Neemuch", "Sanjay Patidar | Web Developer & UI/UX Designer", "https://sanjay-patidar.vercel.app/"),
-   ("Sanjay Patidar blogs", "EduXcel | Explore Tech Insights: Featured Blogs", "https://sanjay-patidar.vercel.app/blogs"),
-#       ("VS Code Introduction", "Introduction to Visual Studio Code (VS Code) | Overview", "https://sanjay-patidar.vercel.app/vs_code_articles/introduction-to-visual-studio-code-vs-code-overview-features-history-usage"),
-      ("Contact Sanjay Patidar", "Contact Sanjay Patidar | Web Developer & UI/UX Designer", "https://sanjay-patidar.vercel.app/contact"),
-   ("Sanjay Patidar Resume", "Sanjay Patidar | Web Developer Resume", "https://sanjay-patidar.vercel.app/resume"),
-#    ("Eduxcel", "EduXcel | Empowering Careers in Tech", "https://eduxcel.vercel.app"),
-#    ("Eduxcel Signup", "Secure Signup", "https://eduxcel.vercel.app/signup"),
-
+    ("Sanjay Patidar Neemuch", "Sanjay Patidar | Web Developer & UI/UX Designer", "https://sanjay-patidar.vercel.app/"),
+    ("Sanjay Patidar blogs", "EduXcel | Explore Tech Insights: Featured Blogs", "https://sanjay-patidar.vercel.app/blogs"),
+    ("Contact Sanjay Patidar", "Contact Sanjay Patidar | Web Developer & UI/UX Designer", "https://sanjay-patidar.vercel.app/contact"),
+    ("Sanjay Patidar Resume", "Sanjay Patidar | Web Developer Resume", "https://sanjay-patidar.vercel.app/resume"),
 ]
 
 # Number of times to repeat the process
