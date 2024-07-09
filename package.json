@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node server.js",
-"postinstall": "npm install selenium-webdriver",
+    "postinstall": "npm install selenium-webdriver && pip install -r requirements.txt",
   "deploy": "npm run postinstall && npm start"
   },
   "keywords": [],
