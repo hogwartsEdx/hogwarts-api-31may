@@ -10,6 +10,7 @@
         const AWS = require('aws-sdk');
         const session = require('express-session');
         const jwt = require('jsonwebtoken');
+const { exec } = require('child_process');
 
         require('dotenv').config();
         const passport = require('passport');
@@ -59,7 +60,23 @@
             console.log(`Uploading ${file.originalname} to S3 in folder ${folder}`);
             return s3.upload(params).promise();
         };
+app.get('/run-script', (req, res) => {
+    const chromeDriverPath = path.join(__dirname, 'chromedriver');
+    const command = `CHROME_DRIVER_PATH=${chromeDriverPath} python3 main.py`;
 
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error: ${error.message}`);
+            return res.status(500).send('Error executing script');
+        }
+        if (stderr) {
+            console.error(`Stderr: ${stderr}`);
+            return res.status(500).send('Error in script');
+        }
+        console.log(`Stdout: ${stdout}`);
+        res.send('Script executed successfully');
+    });
+});
         // Route for handling image uploads
         app.post('/upload/image', upload.single('image'), async (req, res) => {
             console.log('Image upload route called');
