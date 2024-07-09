@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server.js",
 "postinstall": "npm install selenium-webdriver",
-  "deploy": "npm run postinstall && npm start",
+  "deploy": "npm run postinstall && npm start"
   },
   "keywords": [],
   "author": "",
