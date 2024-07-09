@@ -11,6 +11,8 @@
         const session = require('express-session');
         const jwt = require('jsonwebtoken');
 const { exec } = require('child_process');
+const { Builder, By, Key } = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 
         require('dotenv').config();
         const passport = require('passport');
@@ -60,24 +62,35 @@ const { exec } = require('child_process');
             console.log(`Uploading ${file.originalname} to S3 in folder ${folder}`);
             return s3.upload(params).promise();
         };
-app.get('/run-script', (req, res) => {
-    const chromeDriverPath = path.join(__dirname, 'chromedriver');
-    const command = `CHROME_DRIVER_PATH=${chromeDriverPath} python3 main.py`;
+const chromeDriverPath = path.join(__dirname, 'chromedriver');
 
-    exec(command, (error, stdout, stderr) => {
-        if (error) {
-            console.error(`Error: ${error.message}`);
-            return res.status(500).send('Error executing script');
-        }
-        if (stderr) {
-            console.error(`Stderr: ${stderr}`);
-            return res.status(500).send('Error in script');
-        }
-        console.log(`Stdout: ${stdout}`);
+// Set up Chrome options
+const chromeOptions = new chrome.Options();
+chromeOptions.addArguments("--headless", "--no-sandbox", "--disable-dev-shm-usage");
+
+app.get('/run-script', async (req, res) => {
+    try {
+        // Create a new WebDriver instance using Chrome
+        let driver = await new Builder()
+            .forBrowser('chrome')
+            .setChromeOptions(chromeOptions)
+            .setChromeService(new chrome.ServiceBuilder(chromeDriverPath))
+            .build();
+
+        // Example script using Selenium WebDriver
+        await driver.get('https://www.example.com');
+        const title = await driver.getTitle();
+        console.log('Page title:', title);
+
+        // Close the browser
+        await driver.quit();
+
         res.send('Script executed successfully');
-    });
-});
-        // Route for handling image uploads
+    } catch (error) {
+        console.error('Error executing script:', error);
+        res.status(500).send('Error executing script');
+    }
+});        // Route for handling image uploads
         app.post('/upload/image', upload.single('image'), async (req, res) => {
             console.log('Image upload route called');
             try {
