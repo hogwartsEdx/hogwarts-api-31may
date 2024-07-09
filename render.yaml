@@ -6,4 +6,6 @@ services:
       - curl -LO https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip
       - unzip chromedriver_linux64.zip
       - chmod +x chromedriver
+            - pip install selenium  
+
     startCommand: npm start
