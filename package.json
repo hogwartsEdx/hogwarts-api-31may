@@ -8,7 +8,6 @@
   },
   "scripts": {
     "start": "node server.js",
-  "postinstall": "curl -LO https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip && unzip chromedriver_linux64.zip && chmod +x chromedriver && mv chromedriver /usr/local/bin/chromedriver",
 
     "deploy": "yarn start"
   },
