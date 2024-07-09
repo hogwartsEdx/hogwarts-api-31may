@@ -8,7 +8,7 @@ import threading
 import os
 
 # Assuming chromedriver is located in the project root directory
-chrome_driver_path = "/opt/render/project/src/chromedriver"
+chrome_driver_path = os.path.join(os.getcwd(), 'chromedriver')
 
 # Set up Chrome options
 chrome_options = Options()
